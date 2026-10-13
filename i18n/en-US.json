@@ -1,6 +1,6 @@
 {
 	"common": {
-		"appName": "Jac-chart",
+		"appName": "Jac-Chart",
 		"actions": {
 			"cancel": "Cancel",
 			"close": "Close",
@@ -182,7 +182,7 @@
 				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Use a permanent email address. Disposable addresses cannot create accounts."
 			},
 			"instanceStatusError": "Couldn't reach the server. Please retry in a moment.",
-			"heading": "Sign in to Jac-chart",
+			"heading": "Sign in to Jac-Chart",
 			"submitPassword": "Sign in",
 			"invitation": {
 				"title": "{{inviterName}} invited you to {{workspaceName}}",
@@ -190,7 +190,7 @@
 				"description": "Sign in with the email that received the invitation. You'll join the workspace right after."
 			},
 			"footer": {
-				"newHere": "New to Jac-chart?",
+				"newHere": "New to Jac-Chart?",
 				"createAccount": "Create an account",
 				"inviteOnly": "Accounts here are invite-only. Ask an admin for an invitation.",
 				"providerSignUp": "New here? Sign in with a provider above to create an account.",
@@ -245,7 +245,7 @@
 			"toggleMessage": "Already have an account?",
 			"toggleLink": "Sign in",
 			"instanceStatusError": "Couldn't reach the server. Please retry in a moment.",
-			"instanceAdminTitle": "Set up your Jac-chart instance",
+			"instanceAdminTitle": "Set up your Jac-Chart instance",
 			"instanceAdminSubtitle": "This account becomes the instance administrator with full access.",
 			"heading": "Create your account",
 			"submitPassword": "Create account",
@@ -297,7 +297,7 @@
 				"acceptFailed": "Failed to accept invitation",
 				"acceptSuccess": "Invitation accepted! Welcome to the team."
 			},
-			"description": "{{inviterName}} invited you to this workspace on Jac-chart.",
+			"description": "{{inviterName}} invited you to this workspace on Jac-Chart.",
 			"invitedBy": "Invited by",
 			"sentTo": "Sent to",
 			"signedInAs": "Signed in as",
@@ -305,7 +305,7 @@
 			"notNow": "Not now",
 			"join": "Join workspace",
 			"switchAccount": "Switch account",
-			"goToJac-Chart": "Go to Jac-chart",
+			"goToJac-Chart": "Go to Jac-Chart",
 			"mismatch": {
 				"title": "Signed in with a different email",
 				"description": "This invitation was sent to {{invitedEmail}}. You're signed in as {{email}}."
@@ -324,7 +324,7 @@
 			}
 		},
 		"onboarding": {
-			"pageTitle": "Welcome to Jac-chart",
+			"pageTitle": "Welcome to Jac-Chart",
 			"workspaceName": "Workspace name",
 			"workspaceNamePlaceholder": "e.g. Acme Inc, My Team",
 			"restrictedTitle": "You need an invitation",
@@ -372,7 +372,7 @@
 				},
 				"invite": {
 					"title": "Invite your team",
-					"description": "Jac-chart works best with everyone in it. Open **Members** in the sidebar to invite people by email."
+					"description": "Jac-Chart works best with everyone in it. Open **Members** in the sidebar to invite people by email."
 				},
 				"integrations": {
 					"title": "Connect GitHub, GitLab or Gitea",
@@ -502,7 +502,7 @@
 		"device": {
 			"connect": {
 				"title": "Connect a device",
-				"description": "Enter the code shown in your terminal or app to link it to your Jac-chart account.",
+				"description": "Enter the code shown in your terminal or app to link it to your Jac-Chart account.",
 				"label": "Device code",
 				"submit": "Continue",
 				"noCode": "No code yet? Start signing in from your app first.",
@@ -566,10 +566,10 @@
 		"syncRules": {
 			"title": "What syncs",
 			"sharedHint": "These rules apply to everyone using this project. Hiding advanced settings does not disable them.",
-			"outgoing": "Jac-chart → repository",
-			"incoming": "Repository → Jac-chart",
-			"outgoingHint": "Choose which Jac-chart tasks can sync. Losing a matching label pauses both directions for an existing task.",
-			"incomingHint": "Choose which issues can be imported or create tasks. Use exact repository label names. Existing links follow the Jac-chart task rule.",
+			"outgoing": "Jac-Chart → repository",
+			"incoming": "Repository → Jac-Chart",
+			"outgoingHint": "Choose which Jac-Chart tasks can sync. Losing a matching label pauses both directions for an existing task.",
+			"incomingHint": "Choose which issues can be imported or create tasks. Use exact repository label names. Existing links follow the Jac-Chart task rule.",
 			"all": "All tasks and issues",
 			"filtered": "Only matching labels",
 			"any": "Any selected label",
@@ -612,7 +612,7 @@
 			"closed": "Closed",
 			"noDescription": "No description",
 			"useRepository": "Keep repository values",
-			"useJac-Chart": "Keep Jac-chart values",
+			"useJac-Chart": "Keep Jac-Chart values",
 			"exportPending": "Export matching tasks",
 			"inactiveHint": "This integration is paused. No tasks will be exported until it is reactivated.",
 			"allIssues": "All issues",
@@ -622,10 +622,10 @@
 			"issuesLabelled": "Issues labelled",
 			"joinAnd": "and",
 			"joinOr": "or",
-			"jac-chartToProvider": "Jac-chart to {{provider}}",
+			"jac-chartToProvider": "Jac-Chart to {{provider}}",
 			"pausedSummary_one": "{{count}} task stopped syncing because it no longer matched the sync rules.",
 			"pausedSummary_other": "{{count}} tasks stopped syncing because they no longer matched the sync rules.",
-			"providerToJac-Chart": "{{provider}} to Jac-chart",
+			"providerToJac-Chart": "{{provider}} to Jac-Chart",
 			"reviewPaused": "Review",
 			"tasksLabelled": "Tasks labelled"
 		},
@@ -638,7 +638,7 @@
 		"apiKeys": "API keys",
 		"adminUsers": {
 			"title": "Users",
-			"subtitle": "Everyone with an account on this Jac-chart instance.",
+			"subtitle": "Everyone with an account on this Jac-Chart instance.",
 			"directoryTitle": "All users",
 			"searchCount_one": "{{count}} matching user",
 			"searchCount_other": "{{count}} matching users",
@@ -714,7 +714,7 @@
 		},
 		"adminWorkspaces": {
 			"title": "Workspaces",
-			"subtitle": "Every workspace on this Jac-chart instance, including ones you don't belong to.",
+			"subtitle": "Every workspace on this Jac-Chart instance, including ones you don't belong to.",
 			"directoryTitle": "All workspaces",
 			"searchCount_one": "{{count}} matching workspace",
 			"searchCount_other": "{{count}} matching workspaces",
@@ -831,7 +831,7 @@
 		"notificationsPage": {
 			"pageTitle": "Notifications",
 			"title": "Notifications",
-			"subtitle": "What Jac-chart tells you about, and where it reaches you.",
+			"subtitle": "What Jac-Chart tells you about, and where it reaches you.",
 			"statusConnected": "Connected",
 			"statusPaused": "Paused",
 			"emailTitle": "Email",
@@ -864,7 +864,7 @@
 			"webhookUrlPlaceholder": "https://example.com/webhooks/jac-chart",
 			"webhookSecretPlaceholder": "Optional shared secret",
 			"webhookSecretHintConfigured": "A signing secret is already configured ({{masked}}). Enter a new one to replace it.",
-			"webhookSecretHintOptional": "Jac-chart signs the request body when a secret is set.",
+			"webhookSecretHintOptional": "Jac-Chart signs the request body when a secret is set.",
 			"connectWebhook": "Connect webhook",
 			"eventPreferencesTitle": "Notify me about",
 			"eventPreferencesDescription": "Your own comments, mentions, and status changes never notify you.",
@@ -910,7 +910,7 @@
 			"reminderLeadTimeUnitDaysBefore_one": "day before",
 			"reminderLeadTimeUnitDaysBefore_other": "days before",
 			"channelsTitle": "Channels",
-			"channelsDescription": "Notifications always show in Jac-chart. Connect a channel to get them somewhere else too.",
+			"channelsDescription": "Notifications always show in Jac-Chart. Connect a channel to get them somewhere else too.",
 			"statusOn": "On",
 			"emailToggleLabel": "Send notifications by email",
 			"connect": "Connect",
@@ -927,7 +927,7 @@
 			"workspacesTitle": "Workspaces",
 			"workspacesDescription": "Choose which workspaces and projects can use your channels.",
 			"statusSending": "Sending",
-			"onlyInJac-Chart": "Only in Jac-chart",
+			"onlyInJac-Chart": "Only in Jac-Chart",
 			"projectCount_one": "{{count}} project",
 			"projectCount_other": "{{count}} projects",
 			"ruleSummary": "{{channels}} · {{projects}}",
@@ -946,12 +946,12 @@
 			"save": "Save",
 			"stopSending": "Stop sending",
 			"stopSendingTitle": "Stop sending from {{workspaceName}}?",
-			"stopSendingDescription": "Notifications from this workspace will only show in Jac-chart.",
+			"stopSendingDescription": "Notifications from this workspace will only show in Jac-Chart.",
 			"stopping": "Stopping..."
 		},
 		"preferencesPage": {
 			"title": "Preferences",
-			"subtitle": "How Jac-chart looks and works for you.",
+			"subtitle": "How Jac-Chart looks and works for you.",
 			"appearanceTitle": "General",
 			"theme": "Theme",
 			"selectTheme": "Select a theme",
@@ -988,7 +988,7 @@
 		"developerPage": {
 			"pageTitle": "API keys",
 			"title": "API keys",
-			"subtitle": "Let scripts, the CLI, and MCP clients use Jac-chart as you.",
+			"subtitle": "Let scripts, the CLI, and MCP clients use Jac-Chart as you.",
 			"unnamedKey": "Unnamed",
 			"newKey": "New key",
 			"keysTitle": "Keys",
@@ -1330,7 +1330,7 @@
 		"workspaceImport": {
 			"pageTitle": "Import",
 			"title": "Import",
-			"subtitle": "Bring your projects from another tool into {{workspace}}. Jac-chart only reads from the source.",
+			"subtitle": "Bring your projects from another tool into {{workspace}}. Jac-Chart only reads from the source.",
 			"opensInNewTab": "(opens in a new tab)",
 			"retry": "Try again",
 			"notAllowed": {
@@ -1363,8 +1363,8 @@
 					"intro": "Each PLANKA board becomes a project, with its lists as columns."
 				},
 				"jac-chart": {
-					"pickerName": "Another Jac-chart",
-					"description": "Move projects between Jac-chart Cloud and a self-hosted instance.",
+					"pickerName": "Another Jac-Chart",
+					"description": "Move projects between Jac-Chart Cloud and a self-hosted instance.",
 					"intro": "Projects from every workspace the key can see. Each one you pick is copied here."
 				}
 			},
@@ -1397,7 +1397,7 @@
 			"connect": {
 				"title": "Import from {{source}}",
 				"sectionTitle": "Connect",
-				"sectionDescription": "Jac-chart only reads from {{source}}. The key is used for this import and never stored.",
+				"sectionDescription": "Jac-Chart only reads from {{source}}. The key is used for this import and never stored.",
 				"cancel": "Cancel",
 				"continue": "Continue",
 				"whereToFind": "Where to find it",
@@ -1431,7 +1431,7 @@
 				"apiKeyLabel": "API key",
 				"apiKeyDescription": "In a Power-Up you own, open the Trello Auth tab and generate an API key (not the OAuth 2.0 tab) at",
 				"apiKeyPlaceholder": "Paste API key",
-				"authorizeLabel": "Authorize Jac-chart",
+				"authorizeLabel": "Authorize Jac-Chart",
 				"authorizeDescription": "Opens Trello in a new tab. Read only, expires after a day.",
 				"authorizeNeedsKey": "Enter the API key first. Read only, expires after a day.",
 				"authorizeButton": "Authorize on Trello",
@@ -1463,10 +1463,10 @@
 				"adminTip": "Use a PLANKA admin account. PLANKA only shows email addresses to admins, and card members are matched to people here by email."
 			},
 			"jac-chart": {
-				"urlLabel": "Jac-chart URL",
+				"urlLabel": "Jac-Chart URL",
 				"urlDescription": "The instance you are moving from.",
 				"apiKeyLabel": "API key",
-				"apiKeyDescription": "In that Jac-chart, open Settings, then API Keys.",
+				"apiKeyDescription": "In that Jac-Chart, open Settings, then API Keys.",
 				"apiKeyPlaceholder": "Paste API key"
 			},
 			"select": {
@@ -1805,11 +1805,11 @@
 				"removeError": "Failed to remove GitHub integration",
 				"issuesImported": "Issues imported successfully",
 				"importError": "Failed to import issues",
-				"commentOnEnabled": "Jac-chart will comment with a task link on new issues",
+				"commentOnEnabled": "Jac-Chart will comment with a task link on new issues",
 				"commentOnDisabled": "Task link comments on new issues are turned off",
 				"settingsUpdateError": "Failed to update GitHub integration"
 			},
-			"commentTaskLinkTitle": "Comment a Jac-chart link on new issues",
+			"commentTaskLinkTitle": "Comment a Jac-Chart link on new issues",
 			"commentTaskLinkHint": "So people on GitHub can jump to the task.",
 			"updatePermissions": "Update permissions",
 			"installGithubApp": "Install GitHub App",
@@ -1826,9 +1826,9 @@
 			"linkAccountTitle": "Link your GitHub account",
 			"linkGithub": "Link GitHub",
 			"linked": "Linked",
-			"verifyMissingPermissions": "The Jac-chart GitHub App is missing permissions: {{list}}.",
-			"verifyNotInstalled": "The Jac-chart GitHub App isn't installed on this repository.",
-			"verifyReady": "The Jac-chart GitHub App is installed with the permissions it needs.",
+			"verifyMissingPermissions": "The Jac-Chart GitHub App is missing permissions: {{list}}.",
+			"verifyNotInstalled": "The Jac-Chart GitHub App isn't installed on this repository.",
+			"verifyReady": "The Jac-Chart GitHub App is installed with the permissions it needs.",
 			"workflowHint": "Move tasks when pull requests open or merge in",
 			"workflowLink": "Workflow"
 		},
@@ -1846,13 +1846,13 @@
 				"removeError": "Failed to remove Gitea integration",
 				"issuesImported": "Issues imported successfully",
 				"importError": "Failed to import issues",
-				"commentOnEnabled": "Jac-chart will comment with a task link on new issues",
+				"commentOnEnabled": "Jac-Chart will comment with a task link on new issues",
 				"commentOnDisabled": "Task link comments on new issues are turned off",
 				"settingsUpdateError": "Failed to update Gitea integration"
 			},
-			"commentTaskLinkTitle": "Comment a Jac-chart link on new issues",
+			"commentTaskLinkTitle": "Comment a Jac-Chart link on new issues",
 			"commentTaskLinkHint": "So people on Gitea can jump to the task.",
-			"webhookHint": "Add this webhook in the repository settings so changes come back to Jac-chart.",
+			"webhookHint": "Add this webhook in the repository settings so changes come back to Jac-Chart.",
 			"baseUrlLabel": "Gitea URL",
 			"tokenLabel": "Personal access token",
 			"tokenPlaceholder": "Paste token",
@@ -1880,13 +1880,13 @@
 				"removeError": "Failed to remove GitLab integration",
 				"issuesImported": "Issues imported successfully",
 				"importError": "Failed to import issues",
-				"commentOnEnabled": "Jac-chart will comment with a task link on issues opened in GitLab",
+				"commentOnEnabled": "Jac-Chart will comment with a task link on issues opened in GitLab",
 				"commentOnDisabled": "Task link comments on issues opened in GitLab are turned off",
 				"settingsUpdateError": "Failed to update GitLab integration"
 			},
-			"commentTaskLinkTitle": "Comment a Jac-chart link on issues opened in GitLab",
+			"commentTaskLinkTitle": "Comment a Jac-Chart link on issues opened in GitLab",
 			"commentTaskLinkHint": "So people on GitLab can jump to the task.",
-			"webhookHint": "Add this webhook in the project settings so changes come back to Jac-chart.",
+			"webhookHint": "Add this webhook in the project settings so changes come back to Jac-Chart.",
 			"baseUrlLabel": "GitLab URL",
 			"tokenTypeLabel": "Token type",
 			"tokenTypePrivate": "Personal, project or group access token",
@@ -1978,10 +1978,10 @@
 			},
 			"webhookLabel": "Endpoint URL",
 			"webhookPlaceholder": "https://example.com/webhooks/jac-chart",
-			"webhookHint": "Jac-chart sends POST requests with a JSON payload for each enabled event.",
+			"webhookHint": "Jac-Chart sends POST requests with a JSON payload for each enabled event.",
 			"secretLabel": "Signing secret",
 			"secretPlaceholder": "Shared secret",
-			"secretHint": "Jac-chart signs each request with it and sends the digest in the X-Jac-Chart-Signature header.",
+			"secretHint": "Jac-Chart signs each request with it and sends the digest in the X-Jac-Chart-Signature header.",
 			"secretHintConfigured": "Current secret: {{secret}}. Paste a new one to replace it.",
 			"eventsTitle": "Send when",
 			"events": {
@@ -2004,7 +2004,7 @@
 			"reminderLeadTimeBefore": "Send reminders",
 			"reminderLeadTimeAfter": "hours before a task is due",
 			"disconnectTitle": "Disconnect webhook?",
-			"disconnectDescription": "Jac-chart stops sending events and removes the saved endpoint and secret."
+			"disconnectDescription": "Jac-Chart stops sending events and removes the saved endpoint and secret."
 		},
 		"telegramIntegration": {
 			"validation": {
@@ -2037,7 +2037,7 @@
 		},
 		"repositoryBrowser": {
 			"title": "Choose a repository",
-			"description": "Repositories the Jac-chart GitHub App can see.",
+			"description": "Repositories the Jac-Chart GitHub App can see.",
 			"searchPlaceholder": "Search repositories",
 			"loadError": "Couldn't load repositories.",
 			"tryAgain": "Retry",
@@ -2112,7 +2112,7 @@
 		"securityPage": {
 			"pageTitle": "Security",
 			"title": "Security",
-			"subtitle": "How you sign in to Jac-chart.",
+			"subtitle": "How you sign in to Jac-Chart.",
 			"sectionTitle": "Sign-in",
 			"currentPassword": "Current password",
 			"newPassword": "New password",
@@ -2181,14 +2181,14 @@
 		"billing": {
 			"pageTitle": "Billing",
 			"subtitle": "Your plan for {{workspace}}.",
-			"disabled": "Billing isn't enabled on this instance. Self-hosted Jac-chart includes every feature, free forever.",
+			"disabled": "Billing isn't enabled on this instance. Self-hosted Jac-Chart includes every feature, free forever.",
 			"currentPlan": {
 				"title": "Current plan"
 			},
 			"foundingFree": {
 				"title": "Founding Free",
 				"badge": "Free",
-				"description": "This workspace has free access to Jac-chart Cloud as an early supporter. Thank you for being here from the start."
+				"description": "This workspace has free access to Jac-Chart Cloud as an early supporter. Thank you for being here from the start."
 			},
 			"seats_one": "{{count}} seat",
 			"seats_other": "{{count}} seats",
@@ -2301,7 +2301,7 @@
 			"disconnect": "Disconnect",
 			"disconnecting": "Disconnecting…",
 			"disconnectTitle": "Disconnect {{provider}}?",
-			"disconnectDescription": "Jac-chart stops posting to {{provider}} and removes the saved settings.",
+			"disconnectDescription": "Jac-Chart stops posting to {{provider}} and removes the saved settings.",
 			"retry": "Retry"
 		},
 		"codeHosting": {
@@ -3275,14 +3275,14 @@
 	},
 	"invitations": {
 		"email": {
-			"subject": "{{inviterName}} invited you to join {{workspaceName}} on Jac-chart",
-			"preview": "You're invited to {{workspaceName}} on Jac-chart",
+			"subject": "{{inviterName}} invited you to join {{workspaceName}} on Jac-Chart",
+			"preview": "You're invited to {{workspaceName}} on Jac-Chart",
 			"title": "Join {{workspaceName}}",
-			"subtitle": "{{inviterName}} ({{inviterEmail}}) invited you to collaborate in Jac-chart.",
+			"subtitle": "{{inviterName}} ({{inviterEmail}}) invited you to collaborate in Jac-Chart.",
 			"cta": "Accept invitation",
 			"sameEmail": "You can accept with the same email that received this message.",
 			"ignore": "If this wasn't expected, you can safely ignore this email.",
-			"footer": "Jac-chart workspace invitation",
+			"footer": "Jac-Chart workspace invitation",
 			"details": {
 				"title": "Invitation details",
 				"sentTo": "Sent to",
@@ -3547,42 +3547,42 @@
 	},
 	"press": {
 		"title": "Press kit",
-		"headline": "Jac-chart press kit",
-		"intro": "Jac-chart logos and product screenshots for articles, videos, and other media.",
-		"description": "Jac-chart press resources: product information, logos, screenshots, and contact details for journalists and creators.",
+		"headline": "Jac-Chart press kit",
+		"intro": "Jac-Chart logos and product screenshots for articles, videos, and other media.",
+		"description": "Jac-Chart press resources: product information, logos, screenshots, and contact details for journalists and creators.",
 		"downloadKit": "Download all assets",
-		"boilerplateTitle": "About Jac-chart",
-		"boilerplate": "Jac-chart is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Jac-chart is available under the MIT license for self-hosting, or as a managed service through Jac-chart Cloud.",
+		"boilerplateTitle": "About Jac-Chart",
+		"boilerplate": "Jac-Chart is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Jac-Chart is available under the MIT license for self-hosting, or as a managed service through Jac-Chart Cloud.",
 		"logosTitle": "Logos",
 		"darkLogo": "Dark wordmark",
-		"darkLogoAlt": "Dark Jac-chart logo on a light background",
+		"darkLogoAlt": "Dark Jac-Chart logo on a light background",
 		"darkLogoDetail": "SVG",
 		"lightLogo": "Light wordmark",
-		"lightLogoAlt": "Light Jac-chart logo on a dark background",
+		"lightLogoAlt": "Light Jac-Chart logo on a dark background",
 		"lightLogoDetail": "SVG",
 		"icon": "App icon",
-		"iconAlt": "Jac-chart app icon",
+		"iconAlt": "Jac-Chart app icon",
 		"iconDetail": "PNG, 512 × 512",
 		"download": "Download",
 		"screenshotsTitle": "Screenshots",
 		"lightScreenshot": "Board (light)",
-		"lightScreenshotAlt": "Jac-chart board in light theme, with task cards arranged by status",
+		"lightScreenshotAlt": "Jac-Chart board in light theme, with task cards arranged by status",
 		"darkScreenshot": "Board (dark)",
-		"darkScreenshotAlt": "Jac-chart board in dark theme, with task cards arranged by status",
+		"darkScreenshotAlt": "Jac-Chart board in dark theme, with task cards arranged by status",
 		"lightListScreenshot": "List (light)",
-		"lightListScreenshotAlt": "Jac-chart task list in light theme, grouped by status with assignees, priorities, labels, and due dates",
+		"lightListScreenshotAlt": "Jac-Chart task list in light theme, grouped by status with assignees, priorities, labels, and due dates",
 		"darkListScreenshot": "List (dark)",
-		"darkListScreenshotAlt": "Jac-chart task list in dark theme, grouped by status with assignees, priorities, labels, and due dates",
+		"darkListScreenshotAlt": "Jac-Chart task list in dark theme, grouped by status with assignees, priorities, labels, and due dates",
 		"lightTimelineScreenshot": "Timeline (light)",
-		"lightTimelineScreenshotAlt": "Jac-chart Gantt timeline in light theme, showing scheduled tasks and their durations",
+		"lightTimelineScreenshotAlt": "Jac-Chart Gantt timeline in light theme, showing scheduled tasks and their durations",
 		"darkTimelineScreenshot": "Timeline (dark)",
-		"darkTimelineScreenshotAlt": "Jac-chart Gantt timeline in dark theme, showing scheduled tasks and their durations",
+		"darkTimelineScreenshotAlt": "Jac-Chart Gantt timeline in dark theme, showing scheduled tasks and their durations",
 		"lightTaskScreenshot": "Task details (light)",
-		"lightTaskScreenshotAlt": "Jac-chart task details in light theme, with a description, checklist, team comment, and task properties",
+		"lightTaskScreenshotAlt": "Jac-Chart task details in light theme, with a description, checklist, team comment, and task properties",
 		"darkTaskScreenshot": "Task details (dark)",
-		"darkTaskScreenshotAlt": "Jac-chart task details in dark theme, with a description, checklist, team comment, and task properties",
+		"darkTaskScreenshotAlt": "Jac-Chart task details in dark theme, with a description, checklist, team comment, and task properties",
 		"contactTitle": "Press enquiries",
-		"contactBody": "Contact the Jac-chart team for product questions, interviews, or additional materials.",
+		"contactBody": "Contact the Jac-Chart team for product questions, interviews, or additional materials.",
 		"usageContrast": "Choose the light wordmark for dark backgrounds and the dark wordmark for light backgrounds.",
 		"usageProportions": "Keep the original proportions and colours, without stretching or adding effects.",
 		"usageSpace": "Leave enough space around the logo to keep it clear and readable."
@@ -3592,20 +3592,20 @@
 			"ciSponsor": "Partners"
 		},
 		"founder": {
-			"title": "Why Jac-chart exists",
-			"intro": "I'm Andrej, and I created Jac-chart because I was tired of project management tools that got in the way more than they helped. After years of using bloated, overcomplicated platforms that distracted from actual work, I knew there had to be a better way.",
+			"title": "Why Jac-Chart exists",
+			"intro": "I'm Andrej, and I created Jac-Chart because I was tired of project management tools that got in the way more than they helped. After years of using bloated, overcomplicated platforms that distracted from actual work, I knew there had to be a better way.",
 			"problem": "The problem wasn't that these tools lacked features - it was that they had too many. Every notification, every unnecessary button, every complex workflow was pulling my team away from what mattered: building great products.",
-			"principle": "I believe the best tools are invisible. They should amplify your team's natural workflow, not force you to adapt to theirs. Jac-chart is built on the principle that less is more - every feature exists because it solves a real problem, not because it looks impressive in a demo."
+			"principle": "I believe the best tools are invisible. They should amplify your team's natural workflow, not force you to adapt to theirs. Jac-Chart is built on the principle that less is more - every feature exists because it solves a real problem, not because it looks impressive in a demo."
 		},
 		"hero": {
-			"cloudCta": "Try Jac-chart Cloud",
-			"selfHostCta": "Self-host Jac-chart",
+			"cloudCta": "Try Jac-Chart Cloud",
+			"selfHostCta": "Self-host Jac-Chart",
 			"trialNote": "14-day cloud trial. No credit card required.",
 			"github": "GitHub",
 			"productHunt": "Product Hunt",
 			"title": "Project management",
 			"titleAccent": "that doesn't become the project.",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or let Jac-chart Cloud handle the hosting."
+			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or let Jac-Chart Cloud handle the hosting."
 		},
 		"navigation": {
 			"product": "Product",
@@ -3619,12 +3619,12 @@
 			"community": "Community",
 			"menu": "Menu",
 			"closeMenu": "Close menu",
-			"home": "Jac-chart home",
+			"home": "Jac-Chart home",
 			"signIn": "Sign In",
 			"getStarted": "Get Started"
 		},
 		"showcase": {
-			"label": "Jac-chart product views",
+			"label": "Jac-Chart product views",
 			"controls": "Choose a product view",
 			"play": "Play product views",
 			"pause": "Pause product views",
@@ -3647,7 +3647,7 @@
 			"hosting": {
 				"title": "Run it on your own server.",
 				"description": "Deploy with Docker and keep your workspace on infrastructure you control.",
-				"link": "Self-host Jac-chart"
+				"link": "Self-host Jac-Chart"
 			},
 			"source": {
 				"title": "The code is open, too.",
@@ -3655,8 +3655,8 @@
 				"link": "View the source"
 			},
 			"preview": {
-				"taskAlt": "Interactive Jac-chart task and subtask preview.",
-				"githubAlt": "Interactive preview of a GitHub merge updating a Jac-chart task.",
+				"taskAlt": "Interactive Jac-Chart task and subtask preview.",
+				"githubAlt": "Interactive preview of a GitHub merge updating a Jac-Chart task.",
 				"taskTitle": "Publish the new homepage",
 				"taskDescription": "Update the copy and check the layout before the next release.",
 				"checklistDone": "Review the copy",
@@ -3666,7 +3666,7 @@
 				"date": "Oct 12",
 				"design": "design",
 				"done": "Done",
-				"relationsAlt": "Interactive Jac-chart task dependencies preview.",
+				"relationsAlt": "Interactive Jac-Chart task dependencies preview.",
 				"inReview": "In Review",
 				"trySubtasks": "Try checking off a subtask.",
 				"tryGithub": "Preview a merge to see the task update.",
@@ -3688,13 +3688,13 @@
 			}
 		},
 		"seo": {
-			"title": "Jac-chart — Open-source, self-hosted project management",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Jac-chart Cloud."
+			"title": "Jac-Chart — Open-source, self-hosted project management",
+			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or use Jac-Chart Cloud."
 		},
 		"resources": {
 			"eyebrow": "Make it your own",
 			"title": "A clear path from trying it to using it.",
-			"description": "Set up your server, connect your tools, or compare Jac-chart with your current tracker.",
+			"description": "Set up your server, connect your tools, or compare Jac-Chart with your current tracker.",
 			"docker": {
 				"title": "Self-host with Docker",
 				"description": "Installation, backups, and updates for a setup you control."
@@ -3708,32 +3708,32 @@
 				"description": "Use MCP to work with tasks and projects through an AI client."
 			},
 			"linear": {
-				"title": "Compare Jac-chart and Linear",
+				"title": "Compare Jac-Chart and Linear",
 				"description": "See the differences in hosting, licensing, and workflow."
 			}
 		},
 		"product": {
 			"title": "Before you get started",
 			"description": "The practical details about hosting, planning, and connecting your team.",
-			"overview": "Jac-chart is an open-source, MIT-licensed project management platform with boards, backlog, Gantt and calendar views, custom fields, time tracking, and GitHub integration. Self-host it on your own infrastructure or use Jac-chart Cloud.",
+			"overview": "Jac-Chart is an open-source, MIT-licensed project management platform with boards, backlog, Gantt and calendar views, custom fields, time tracking, and GitHub integration. Self-host it on your own infrastructure or use Jac-Chart Cloud.",
 			"hosting": {
-				"question": "Is Jac-chart free to self-host?",
-				"answer": "Yes. Jac-chart is MIT licensed and free to self-host, with single sign-on included. Run the application alongside PostgreSQL using Docker Compose, or deploy with the official Helm chart. You manage infrastructure, updates, and backups.",
+				"question": "Is Jac-Chart free to self-host?",
+				"answer": "Yes. Jac-Chart is MIT licensed and free to self-host, with single sign-on included. Run the application alongside PostgreSQL using Docker Compose, or deploy with the official Helm chart. You manage infrastructure, updates, and backups.",
 				"link": "Read the installation guide"
 			},
 			"planning": {
-				"question": "Does Jac-chart have Gantt charts?",
-				"answer": "Yes. Jac-chart includes Gantt and calendar views alongside boards, lists, and backlog planning. Use task start dates and due dates to plan work on a timeline. Budgeting, baseline comparisons, and sprint burndown reports are outside its current scope.",
+				"question": "Does Jac-Chart have Gantt charts?",
+				"answer": "Yes. Jac-Chart includes Gantt and calendar views alongside boards, lists, and backlog planning. Use task start dates and due dates to plan work on a timeline. Budgeting, baseline comparisons, and sprint burndown reports are outside its current scope.",
 				"link": "Compare planning features"
 			},
 			"sso": {
 				"question": "Is single sign-on included?",
-				"answer": "Yes. The free self-hosted build supports Google, GitHub, Discord, and custom OAuth/OIDC providers. Configure your provider on your instance without purchasing a separate Jac-chart edition.",
+				"answer": "Yes. The free self-hosted build supports Google, GitHub, Discord, and custom OAuth/OIDC providers. Configure your provider on your instance without purchasing a separate Jac-Chart edition.",
 				"link": "Configure OIDC"
 			},
 			"agents": {
-				"question": "Can AI clients work with Jac-chart?",
-				"answer": "Yes. Jac-chart provides an MCP server through the @jac-chart/mcp package and an HTTP endpoint. Compatible AI clients can read and update tasks using an API key tied to a user, subject to workspace permissions.",
+				"question": "Can AI clients work with Jac-Chart?",
+				"answer": "Yes. Jac-Chart provides an MCP server through the @jac-chart/mcp package and an HTTP endpoint. Compatible AI clients can read and update tasks using an API key tied to a user, subject to workspace permissions.",
 				"link": "Read the MCP guide"
 			}
 		},
@@ -3744,9 +3744,9 @@
 		},
 		"selfHostingGuide": {
 			"summary": "What self-hosting involves, with links to the maintained Docker Compose configuration and installation steps.",
-			"answer": "To self-host Jac-chart, run the application and PostgreSQL with Docker Compose, configure your public URL and secrets, and put a TLS reverse proxy in front. The installation guide specifies at least 2 GB of RAM and 10 GB of disk space. Plan for ongoing updates, database backups, and storage for uploaded files.",
+			"answer": "To self-host Jac-Chart, run the application and PostgreSQL with Docker Compose, configure your public URL and secrets, and put a TLS reverse proxy in front. The installation guide specifies at least 2 GB of RAM and 10 GB of disk space. Plan for ongoing updates, database backups, and storage for uploaded files.",
 			"requirements": "The documented minimum is 2 GB of RAM and 10 GB of disk space, with Docker 20.10 or newer and Docker Compose V2. Allow more capacity for your workload, database growth, and uploaded files.",
-			"compose": "Use the maintained compose.yml in the Docker Compose guide. It defines PostgreSQL, a persistent database volume, the Jac-chart application, and health checks. Configure the environment file before starting the services; for production, pin an image version so updates are deliberate.",
+			"compose": "Use the maintained compose.yml in the Docker Compose guide. It defines PostgreSQL, a persistent database volume, the Jac-Chart application, and health checks. Configure the environment file before starting the services; for production, pin an image version so updates are deliberate.",
 			"backups": "Back up both PostgreSQL and any object storage used for uploads. Choose a schedule based on how much work your team can afford to lose, store copies off the application server, and test restoring them before you need them.",
 			"worth": "Self-hosting makes sense when you need control over infrastructure and data, and someone can own maintenance. Include server capacity, storage, backups, and that maintenance time when comparing costs with a managed service.",
 			"minimum": "The installation guide specifies Docker 20.10 or newer, Docker Compose V2, at least 2 GB of RAM, and 10 GB of disk space. The Compose setup includes PostgreSQL. Redis is optional for a single API instance.",

@@ -8,7 +8,7 @@ type PageTitleProps = {
 
 export default function PageTitle({
   title,
-  suffix = "Jac-chart",
+  suffix = "Jac-Chart",
   hideAppName = false,
 }: PageTitleProps) {
   useEffect(() => {

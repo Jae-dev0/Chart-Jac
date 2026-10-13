@@ -94,7 +94,7 @@ export default function CommentCard({
             : externalSource === "linear"
               ? "Linear"
               : externalSource === "jac-chart"
-                ? "Jac-chart"
+                ? "Jac-Chart"
                 : externalSource;
   // Gitea and GitLab profile URLs depend on the instance.
   const githubProfileUrl =

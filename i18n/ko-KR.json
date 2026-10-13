@@ -1,6 +1,6 @@
 {
 	"common": {
-		"appName": "Jac-chart",
+		"appName": "Jac-Chart",
 		"actions": {
 			"cancel": "취소",
 			"close": "닫기",

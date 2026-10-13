@@ -20,7 +20,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.jac-chart
-    # Host port 5179 -> container nginx 5173. Open http://localhost:5179.
+    # Host port 5179 -> container nginx 5173. Open http://localhost:5179 or
+    # http://<this-machine-ip>:5179 from another device on the LAN.
     ports:
       - "5179:5173"
     env_file:

@@ -64,7 +64,7 @@ export const IMPORT_SOURCES: ImportSourceDefinition[] = [
   },
   {
     id: "jac-chart",
-    name: "Jac-chart",
+    name: "Jac-Chart",
     pickerNameKey: "settings:workspaceImport.sources.jacChart.pickerName",
     Logo: JacChartLogo,
     descriptionKey: "settings:workspaceImport.sources.jacChart.description",

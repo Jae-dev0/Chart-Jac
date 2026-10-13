@@ -1,7 +1,7 @@
-# Jac-chart setup (port 5179)
+# Jac-Chart setup (port 5179)
 
-This folder is a Jac-chart fork of Jac-Chart: same codebase, rebranded UI
-(`Jac-chart`), Vite/dev access on **http://localhost:5179**, API on
+This folder is a Jac-Chart fork of Jac-Chart: same codebase, rebranded UI
+(`Jac-Chart`), Vite/dev access on **http://localhost:5179**, API on
 **http://localhost:1337**.
 
 ## New laptop in 3 steps

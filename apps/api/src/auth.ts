@@ -184,40 +184,40 @@ function getAuthEmailCopy(locale?: string | null) {
 
   if (localeKey === "de") {
     return {
-      magicLinkSubject: "Anmeldelink für Jac-chart",
-      otpSubject: (otp: string) => `${otp} ist dein Jac-chart-Anmeldecode`,
-      passwordResetSubject: "Jac-chart-Passwort zurücksetzen",
+      magicLinkSubject: "Anmeldelink für Jac-Chart",
+      otpSubject: (otp: string) => `${otp} ist dein Jac-Chart-Anmeldecode`,
+      passwordResetSubject: "Jac-Chart-Passwort zurücksetzen",
     };
   }
 
   if (localeKey === "vi") {
     return {
-      magicLinkSubject: "Liên kết đăng nhập Jac-chart",
-      otpSubject: (otp: string) => `${otp} là mã đăng nhập Jac-chart của bạn`,
-      passwordResetSubject: "Đặt lại mật khẩu Jac-chart",
+      magicLinkSubject: "Liên kết đăng nhập Jac-Chart",
+      otpSubject: (otp: string) => `${otp} là mã đăng nhập Jac-Chart của bạn`,
+      passwordResetSubject: "Đặt lại mật khẩu Jac-Chart",
     };
   }
 
   if (localeKey === "ja") {
     return {
-      magicLinkSubject: "Jac-chart ログインリンク",
-      otpSubject: (otp: string) => `Jac-chart のサインインコード: ${otp}`,
-      passwordResetSubject: "Jac-chart のパスワードをリセット",
+      magicLinkSubject: "Jac-Chart ログインリンク",
+      otpSubject: (otp: string) => `Jac-Chart のサインインコード: ${otp}`,
+      passwordResetSubject: "Jac-Chart のパスワードをリセット",
     };
   }
 
   if (localeKey === "zh-tw") {
     return {
-      magicLinkSubject: "Jac-chart 登入連結",
-      otpSubject: (otp: string) => `你的 Jac-chart 登入驗證碼：${otp}`,
-      passwordResetSubject: "重設 Jac-chart 密碼",
+      magicLinkSubject: "Jac-Chart 登入連結",
+      otpSubject: (otp: string) => `你的 Jac-Chart 登入驗證碼：${otp}`,
+      passwordResetSubject: "重設 Jac-Chart 密碼",
     };
   }
 
   return {
-    magicLinkSubject: "Login for Jac-chart",
-    otpSubject: (otp: string) => `${otp} is your Jac-chart sign-in code`,
-    passwordResetSubject: "Reset your Jac-chart password",
+    magicLinkSubject: "Login for Jac-Chart",
+    otpSubject: (otp: string) => `${otp} is your Jac-Chart sign-in code`,
+    passwordResetSubject: "Reset your Jac-Chart password",
   };
 }
 

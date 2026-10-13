@@ -1,4 +1,4 @@
-// Jac-chart one-command setup for a new laptop.
+// Jac-Chart one-command setup for a new laptop.
 // Usage:
 //   node ./scripts/setup-jacChart.mjs        (docker defaults, keeps existing secrets)
 //   node ./scripts/setup-jacChart.mjs --dev  (also prints host-native pnpm-dev DB help)
@@ -77,7 +77,7 @@ const sharedPg = pick("POSTGRES_PASSWORD") || pgPassword;
 // 2. Root .env.local (compose.local.yml: api + web + postgres containers).
 ensureFile(
   join(root, ".env.local"),
-  `# Jac-chart local setup (port ${WEB_PORT}) — used by \`docker compose -f compose.local.yml up\`.\n` +
+  `# Jac-Chart local setup (port ${WEB_PORT}) — used by \`docker compose -f compose.local.yml up\`.\n` +
     `JAC_CHART_CLIENT_URL=${CLIENT_URL}\nJAC_CHART_API_URL=${API_URL}\n` +
     `POSTGRES_DB=jacChart\nPOSTGRES_USER=jacChart\nPOSTGRES_PASSWORD=${sharedPg}\nAUTH_SECRET=${sharedAuth}\n`,
 );
@@ -85,12 +85,12 @@ ensureFile(
 // 3. Web .env.local (Vite dev server on 5179).
 ensureFile(
   join(root, "apps", "web", ".env.local"),
-  `# Jac-chart local dev (port ${WEB_PORT}). Read by Vite, overrides .env.development.\n` +
+  `# Jac-Chart local dev (port ${WEB_PORT}). Read by Vite, overrides .env.development.\n` +
     `VITE_API_URL=${API_URL}\nVITE_CLIENT_URL=${CLIENT_URL}\n`,
 );
 
 console.log(`
-Jac-chart env is ready.
+Jac-Chart env is ready.
   Web:  ${CLIENT_URL}
   API:  ${API_URL}/api/health
 

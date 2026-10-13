@@ -1,0 +1,62 @@
+---
+title: Configuration
+description: Settings, environment variables, repository defaults and inline images.
+---
+
+Every setting has a flag, an environment variable, or both. A flag wins over its environment variable.
+
+| Setting | Flag | Environment variable |
+| --- | --- | --- |
+| Server | `--api-url` | `JAC_CHART_API_URL` (default `https://cloud.jac-chart.app`) |
+| Token or API key | `--token` | `JAC_CHART_API_KEY` |
+| Workspace | `-w`, `--workspace` | `JAC_CHART_WORKSPACE` |
+| Project | `-p`, `--project` | `JAC_CHART_PROJECT` |
+| Stored login | `--profile` | `JAC_CHART_PROFILE` |
+| JSON output | `--json` | `JAC_CHART_JSON=true` |
+| Inline images | | `JAC_CHART_IMAGES` (`kitty`, `iterm`, `blocks` or `off`) |
+| Web app address for links | | `JAC_CHART_WEB_URL` (detected during login) |
+| Config file | | `JAC_CHART_CONFIG` |
+
+Logins are stored in `~/.config/jac-chart/config.json`, or `$XDG_CONFIG_HOME/jac-chart/config.json`, with permissions that only your user can read. If another jac-chart CLI already uses that file, the official CLI leaves it untouched and asks you to move it or set `JAC_CHART_CONFIG`. The CLI keeps track of your running timer in `timer.json` next to the config file.
+
+## Repository defaults
+
+Link a repository to a workspace and project, so commands run anywhere inside it use them:
+
+```bash
+jac-chart link                     # pick from a list in a terminal
+jac-chart link -w your-workspace-id -p KAN
+```
+
+`jac-chart link` writes a `.jac-chart.json` at the root of the Git repository, or in the current directory outside a repository. It keeps any other keys already in the file:
+
+```json
+{ "workspace": "your-workspace-id", "project": "KAN" }
+```
+
+Commands look for `.jac-chart.json` in the current directory and its parents. `jac-chart unlink` removes the two keys, and deletes the file when nothing else is left.
+
+The CLI picks the workspace from `-w`, then `JAC_CHART_WORKSPACE`, then `.jac-chart.json`, then the default you chose with `jac-chart workspace use`. It picks the project from `-p`, then `JAC_CHART_PROJECT`, then `.jac-chart.json`.
+
+## Check your setup
+
+`jac-chart context` shows the server, profile, account, workspace and project in use, and where each one came from. Use it when a command picks the wrong workspace or server.
+
+`jac-chart doctor` checks the config file, the server, your login, the workspace, and whether the server has every API operation this CLI uses. It exits with code 1 when a check fails, so it also works in CI:
+
+```bash
+jac-chart doctor
+```
+
+## Images in the terminal
+
+`jac-chart task images` shows the images in a task description, `jac-chart task attach` previews the images you upload, and `jac-chart whoami` shows your avatar.
+
+- Kitty and Ghostty show full images with the Kitty graphics protocol.
+- iTerm2 and WezTerm show full images with the iTerm2 protocol.
+- Other terminals with 256 colors and Unicode get a preview drawn with colored blocks. Inside tmux, screen or Zellij the CLI also uses blocks.
+- When none of these work, the CLI lists the image links instead.
+
+Set `JAC_CHART_IMAGES` to `kitty`, `iterm` or `blocks` to choose the method, or to `off` to turn images off. JSON mode never shows images.
+
+The CLI sends your token only with image requests to your Jac-Chart server's own file URLs. Images hosted anywhere else are fetched without it.

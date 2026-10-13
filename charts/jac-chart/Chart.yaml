@@ -1,0 +1,30 @@
+apiVersion: v2
+name: jac-chart
+description: Jac-Chart - All you need. Nothing you don't. Open source project management that works for you.
+type: application
+version: 2.46.2
+appVersion: "2.46.2"
+keywords:
+  - project-management
+  - kanban
+  - task-management
+  - productivity
+  - collaboration
+home: https://jac-chart.app
+sources:
+  - https://github.com/Jae-dev0/Jac-Chart
+icon: https://assets.jac-chart.app/logo-text.png
+maintainers:
+  - name: Jac-Chart Team
+    url: https://github.com/usejac-chart
+    email: info@jac-chart.app
+annotations:
+  artifacthub.io/license: MIT
+  artifacthub.io/containsSecurityUpdates: "false"
+  artifacthub.io/prerelease: "false"
+  artifacthub.io/features: |
+    - Simple & Fast: Minimalist interface with powerful features
+    - Self-hosted: Full control over your data
+    - Customizable: Make it yours with extensive customization options
+    - Open Source: MIT licensed
+kubeVersion: ">=1.23.0-0"

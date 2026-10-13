@@ -1,0 +1,857 @@
+---
+title: CLI command reference
+sidebarTitle: Command reference
+description: Every jac-chart command with its arguments and flags.
+---
+
+This page lists every command of the [Jac-Chart CLI](/cli) with its arguments and flags. Run any command with `--help` to see the same information in your terminal.
+
+## Conventions
+
+- `<task>` is a ticket ID such as `KAN-12`, or a task ID.
+- `-p`, `--project` takes a project key such as `KAN`, or a project ID. Without it, the CLI uses `JAC_CHART_PROJECT` or the project in `.jac-chart.json`.
+- Dates accept `YYYY-MM-DD`, `today`, `tomorrow` or a number of days ahead such as `+3d`. Edit commands also accept `none` to clear a date.
+- Arguments in `[brackets]` are optional. Many of them open a picker or a prompt when you run the command in a terminal. In scripts, pass them.
+- Commands that delete or remove data ask for confirmation in a terminal. In scripts they stop with an error until you pass `-y`, `--yes`.
+- Repeatable flags can be passed more than once.
+
+## Global flags
+
+These work with every command.
+
+| Flag | Description |
+| --- | --- |
+| `--json` | Print one JSON value on stdout. This is the default when stdout is not a terminal. |
+| `--human` | Print styled output even when stdout is not a terminal. |
+| `--jq <expression>` | Filter the JSON output with a jq expression. Turns on JSON mode. |
+| `--token <token>` | API key or access token to use instead of the stored login. |
+| `--api-url <url>` | Jac-Chart server URL. |
+| `-w`, `--workspace <id>` | Workspace ID. |
+| `--profile <name>` | Stored login to use. |
+| `-h`, `--help` | Show help for the command. |
+| `-v`, `--version` | Show the CLI version. |
+| `--completions <shell>` | Print a completion script for `bash`, `zsh`, `fish` or `sh`. |
+
+## Account and setup
+
+### `jac-chart`
+
+Shows your account, workspace, open tasks and the main commands.
+
+### `jac-chart login`
+
+```bash
+jac-chart login [--no-browser]
+```
+
+Signs in with your browser and stores the login. `--no-browser` prints the sign-in link instead of opening a browser. Add `--api-url` for a self-hosted server, and `--profile` to store the login under a name other than `default`.
+
+### `jac-chart logout`
+
+Signs out and forgets the stored token.
+
+### `jac-chart whoami`
+
+Shows the account and server you are using. Terminals that can show images also show your avatar.
+
+### `jac-chart context`
+
+Shows the server, web app, profile, account, workspace, project, config file and output mode in use, and where each value came from: a flag, an environment variable, `.jac-chart.json` or the stored login.
+
+### `jac-chart doctor`
+
+Checks the config file, that the server answers, that you are signed in, that the workspace exists, and that the server has every API operation this CLI uses. Exits with code 1 when a check fails.
+
+### `jac-chart link`
+
+```bash
+jac-chart link [-w <workspace>] [-p <project>]
+```
+
+Saves the workspace and project for this repository in `.jac-chart.json`. In a terminal, missing values are picked from a list. In scripts, pass both. `-w` takes a workspace ID or slug here.
+
+### `jac-chart unlink`
+
+```bash
+jac-chart unlink [--yes]
+```
+
+Removes the workspace and project from `.jac-chart.json`, and deletes the file when nothing else is left in it. It asks first in a terminal. In scripts it unlinks right away.
+
+### `jac-chart profile list`
+
+Lists stored logins with the server and user of each.
+
+### `jac-chart profile use`
+
+```bash
+jac-chart profile use [<name>]
+```
+
+Switches the stored login your commands use.
+
+### `jac-chart profile rename`
+
+```bash
+jac-chart profile rename <old> <new>
+```
+
+Renames a stored login.
+
+### `jac-chart profile remove`
+
+```bash
+jac-chart profile remove <name> [--yes]
+```
+
+Signs out of a stored login and forgets it.
+
+## Tasks
+
+### `jac-chart task list`
+
+```bash
+jac-chart task list [-p <project>] [flags]
+```
+
+Lists a project's tasks grouped by column.
+
+| Flag | Description |
+| --- | --- |
+| `-p`, `--project` | Project key or ID |
+| `-s`, `--status` | Only tasks in this column, by slug, such as `in-progress` |
+| `--priority` | Only tasks with this priority: `no-priority`, `low`, `medium`, `high` or `urgent` |
+| `-a`, `--assignee` | Only tasks assigned to this user ID, or `me` |
+| `--mine` | Only tasks assigned to you, like `--assignee me` |
+| `-l`, `--label` | Only tasks with this label. Repeat to require several. |
+| `--open` | Hide tasks in done columns |
+| `--sort` | Sort by `created`, `priority`, `due`, `position`, `title` or `number` |
+| `--order` | `asc` or `desc`. Default: `desc` for `created` and `priority`, `asc` otherwise. |
+| `--due-before` | Only tasks due on or before this day |
+| `--due-after` | Only tasks due on or after this day |
+| `--all` | Show every matching task |
+| `-L`, `--limit` | Maximum number of tasks to show. Default: 50. |
+
+```bash
+jac-chart task list -p KAN --mine --open --sort due
+```
+
+### `jac-chart task mine`
+
+```bash
+jac-chart task mine [--all-workspaces]
+```
+
+Lists the open tasks assigned to you in the current workspace, soonest due first. `--all-workspaces` includes every workspace you belong to.
+
+### `jac-chart task view`
+
+```bash
+jac-chart task view <task>
+```
+
+Shows a task with its details and description.
+
+### `jac-chart task create`
+
+```bash
+jac-chart task create [<title>] [flags]
+```
+
+Creates a task. In a terminal, the title is asked for when you leave it out.
+
+| Flag | Description |
+| --- | --- |
+| `-p`, `--project` | Project key or ID |
+| `-d`, `--description` | Description in Markdown, or `-` to read stdin |
+| `-F`, `--description-file` | Read the description from a file, or `-` for stdin |
+| `--priority` | `no-priority`, `low`, `medium`, `high` or `urgent` |
+| `-s`, `--status` | Column slug, such as `in-progress`. Default: the first column. |
+| `-a`, `--assignee` | `me`, or a member by email, name or ID |
+| `--due` | Due date |
+| `--start` | Start date |
+| `--label` | Add a workspace label by name. Repeatable. |
+| `--parent` | Create it as a subtask of this task, such as `KAN-12`. The project defaults to the parent's. |
+
+```bash
+jac-chart task create "Fix login redirect" -p KAN --priority high --due tomorrow --label Bug
+```
+
+### `jac-chart task edit`
+
+```bash
+jac-chart task edit <task> [flags]
+```
+
+Changes a task's title, description, priority, dates or labels.
+
+| Flag | Description |
+| --- | --- |
+| `--title` | New title |
+| `-d`, `--description` | New description in Markdown, or `-` to read stdin. Replaces the current one. |
+| `-F`, `--description-file` | Read the new description from a file, or `-` for stdin |
+| `--priority` | New priority |
+| `--due` | Due date, or `none` to clear it |
+| `--start` | Start date, or `none` to clear it |
+| `--add-label` | Add a workspace label by name. Repeatable. |
+| `--remove-label` | Remove a label by name. Repeatable. |
+
+### `jac-chart task open`
+
+```bash
+jac-chart task open <task>
+```
+
+Opens the task in your browser.
+
+### `jac-chart task status`
+
+```bash
+jac-chart task status <task> [<status>]
+```
+
+Moves a task to another column of its project. The column is a slug or a name, such as `in-progress` or `Done`.
+
+### `jac-chart task move`
+
+```bash
+jac-chart task move <task> [-p <project>] [-s <status>]
+```
+
+Moves a task to another project. `-s`, `--status` picks the column in the destination project. By default the task keeps the same column, or goes to the first one.
+
+### `jac-chart task duplicate`
+
+```bash
+jac-chart task duplicate <task> [--title <title>] [-p <project>]
+```
+
+Copies a task with its description, labels and custom fields. `--title` sets the title of the copy. `-p` puts the copy in another project.
+
+### `jac-chart task bulk`
+
+```bash
+jac-chart task bulk <task...> [flags]
+```
+
+Applies one change to many tasks. Pass one change per call. If any task is unknown, nothing changes.
+
+| Flag | Description |
+| --- | --- |
+| `-s`, `--status` | Move every task to this column |
+| `--priority` | Set this priority on every task |
+| `-a`, `--assignee` | Assign every task to `me`, or a member by email, name or ID |
+| `--unassign` | Remove the assignee from every task |
+| `--due` | Set the due date, or `none` to clear it |
+| `--add-label` | Add this workspace label to every task |
+| `--remove-label` | Remove this label from every task |
+| `--delete` | Delete every task |
+| `-y`, `--yes` | Delete without asking for confirmation |
+
+```bash
+jac-chart task bulk KAN-12 KAN-13 KAN-14 --status done
+```
+
+### `jac-chart task assign`
+
+```bash
+jac-chart task assign <task> [<user>] [--unassign]
+```
+
+Assigns a task to `me`, an email address, a name or a user ID. `--unassign` removes the assignee.
+
+### `jac-chart task field`
+
+```bash
+jac-chart task field <task> [<field>] [<value>] [--clear]
+```
+
+Shows or sets the custom field values of a task. Leave out the field to show every field. A value can be text, a number, a date, `yes` or `no`, an option, or comma-separated options. `--clear` removes the value.
+
+### `jac-chart task comment`
+
+```bash
+jac-chart task comment <task> [<text...>]
+```
+
+Adds a comment to a task. When you leave out the text, it is read from stdin.
+
+### `jac-chart task attach`
+
+```bash
+jac-chart task attach <task> [<file...>] [flags]
+```
+
+Uploads files to a task and adds them to its description. Images are shown inline.
+
+| Flag | Description |
+| --- | --- |
+| `--comment` | Post the files as a new comment instead |
+| `-m`, `--message` | Comment text to post with the files, or `-` for stdin. Implies `--comment`. |
+| `-F`, `--message-file` | Read the comment text from a file, or `-` for stdin. Implies `--comment`. |
+
+### `jac-chart task images`
+
+```bash
+jac-chart task images <task> [--max <n>]
+```
+
+Shows the images in a task description inline, or lists their links when the terminal cannot show images. `--max` shows at most this many images. Default: 10. JSON output lists every image unless you pass `--max`.
+
+### `jac-chart task relation list`
+
+```bash
+jac-chart task relation list <task>
+```
+
+Shows the parent, subtasks and linked tasks of a task.
+
+### `jac-chart task relation add`
+
+```bash
+jac-chart task relation add <task> <type> <other-task>
+```
+
+Links two tasks. `<type>` says how the first task relates to the other: `subtask-of`, `parent-of`, `blocks`, `blocked-by` or `relates-to`.
+
+```bash
+jac-chart task relation add KAN-3 blocked-by KAN-4
+```
+
+### `jac-chart task relation remove`
+
+```bash
+jac-chart task relation remove <task> <other-task> [-t <type>] [--yes]
+```
+
+Unlinks two tasks. `-t`, `--type` removes only that relation. When several relations would be removed, the CLI asks first.
+
+### `jac-chart task link list`
+
+```bash
+jac-chart task link list <task>
+```
+
+Lists a task's links, including issues and pull requests from integrations.
+
+### `jac-chart task link add`
+
+```bash
+jac-chart task link add <task> <url> [-t <title>]
+```
+
+Attaches an `http` or `https` link to a task. `-t`, `--title` sets the text shown instead of the address.
+
+### `jac-chart task link remove`
+
+```bash
+jac-chart task link remove <task> <link> [--yes]
+```
+
+Removes a link you added. `<link>` is the link ID from `jac-chart task link list` (the first characters are enough) or its URL.
+
+### `jac-chart task activity`
+
+```bash
+jac-chart task activity <task> [-L <n>]
+```
+
+Shows the history of a task: status changes, assignments, comments and more. `-L`, `--limit` shows only the latest events. Default: 30.
+
+### `jac-chart task delete`
+
+```bash
+jac-chart task delete <task> [--yes]
+```
+
+Permanently deletes a task with its comments and time entries.
+
+### `jac-chart task export`
+
+```bash
+jac-chart task export [-p <project>] [-o <file>]
+```
+
+Exports a project's tasks as JSON, ready for `jac-chart task import`. `-o`, `--output` writes to a file instead of stdout.
+
+### `jac-chart task import`
+
+```bash
+jac-chart task import <file> [-p <project>] [--dry-run] [--yes]
+```
+
+Creates tasks in a project from a JSON file, or `-` for stdin. The file is the output of `jac-chart task export`, or a JSON array of tasks that each have at least a `title`. Labels are not imported. `--dry-run` checks the file and shows what would be imported.
+
+```bash
+jac-chart task export -p KAN | jac-chart task import - -p MOB --yes
+```
+
+## Comments
+
+### `jac-chart comment list`
+
+```bash
+jac-chart comment list <task> [-L <n>]
+```
+
+Shows the comments on a task, oldest first. `-L`, `--limit` shows only the latest comments. Default: 50.
+
+### `jac-chart comment add`
+
+```bash
+jac-chart comment add <task> [<text...>] [-F <file>]
+```
+
+Adds a comment in Markdown. Pass the text, `-` to read stdin, or `-F`, `--file` to read a file (`-` for stdin). With no text, it is read from stdin.
+
+```bash
+git log -1 --format=%B | jac-chart comment add KAN-12 -
+```
+
+### `jac-chart comment edit`
+
+```bash
+jac-chart comment edit <comment-id> [<text...>] [-F <file>]
+```
+
+Changes the text of one of your comments. Pass the new text, `-` to read stdin, or `-F`, `--file`. In a terminal, it is asked for when you leave it out. Get the ID from `jac-chart comment list`.
+
+### `jac-chart comment delete`
+
+```bash
+jac-chart comment delete <comment-id> [--yes]
+```
+
+Deletes one of your comments.
+
+## Labels
+
+### `jac-chart label list`
+
+Lists the labels in your workspace.
+
+### `jac-chart label create`
+
+```bash
+jac-chart label create [<name>] [-c <color>]
+```
+
+Creates a workspace label. `-c`, `--color` takes a hex color such as `#e7000b`, or one of `stone`, `slate`, `lavender`, `sage`, `forest`, `amber`, `terracotta`, `rose` or `crimson`. By default the CLI picks an unused color.
+
+### `jac-chart label edit`
+
+```bash
+jac-chart label edit [<label>] [--name <name>] [-c <color>]
+```
+
+Renames a label or changes its color, on every task that uses it.
+
+### `jac-chart label delete`
+
+```bash
+jac-chart label delete [<label>] [--yes]
+```
+
+Deletes a label and removes it from every task.
+
+## Time
+
+Durations look like `1h30m`, `45m`, `2h`, `1.5h` or `1:30`, and must be at least one minute. `-m`, `--note` adds a short note about the work.
+
+### `jac-chart time start`
+
+```bash
+jac-chart time start [<task>] [-m <note>]
+```
+
+Starts a timer on a task. Only one timer runs at a time. If another one is running, the CLI offers to stop it in a terminal. In scripts it stops with an error.
+
+### `jac-chart time stop`
+
+```bash
+jac-chart time stop [<task>]
+```
+
+Stops your running timer. If you started it outside the CLI on a task that is not assigned to you, pass the task.
+
+### `jac-chart time status`
+
+Shows your running timer.
+
+### `jac-chart time log`
+
+```bash
+jac-chart time log [<task>] [<duration>] [--date <day>] [-m <note>]
+```
+
+Logs time you already spent. `--date` takes `today`, `yesterday` or `YYYY-MM-DD`.
+
+```bash
+jac-chart time log KAN-12 1h30m --date yesterday -m "Code review"
+```
+
+### `jac-chart time list`
+
+```bash
+jac-chart time list [<task>]
+```
+
+Lists the time logged on a task, with a total.
+
+### `jac-chart time edit`
+
+```bash
+jac-chart time edit <entry-id> [-d <duration>] [-m <note>]
+```
+
+Changes the length or note of a time entry. `-d`, `--duration` keeps the start time. Get the ID from `jac-chart time list`.
+
+## Projects
+
+### `jac-chart project list`
+
+```bash
+jac-chart project list [--archived]
+```
+
+Lists the projects in your workspace. `--archived` includes archived projects.
+
+### `jac-chart project view`
+
+```bash
+jac-chart project view [<project>]
+```
+
+Shows a project with its columns and task counts.
+
+### `jac-chart project create`
+
+```bash
+jac-chart project create [<name>] [flags]
+```
+
+Creates a project with the default columns.
+
+| Flag | Description |
+| --- | --- |
+| `-k`, `--key` | Task ID prefix such as `KAN`. Default: made from the name, like the web app. |
+| `-d`, `--description` | Description in Markdown, or `-` for stdin |
+| `-F`, `--description-file` | Read the description from a file, or `-` for stdin |
+| `--icon` | Lucide icon name from the web app, such as `Rocket`. Default: `Layout`. |
+
+### `jac-chart project edit`
+
+```bash
+jac-chart project edit [<project>] [flags]
+```
+
+Changes a project's name, key, description, icon or visibility.
+
+| Flag | Description |
+| --- | --- |
+| `--name` | New name |
+| `-k`, `--key` | New task ID prefix. Existing ticket IDs change with it. |
+| `-d`, `--description` | New description in Markdown, or `-` for stdin. Replaces the current one. |
+| `-F`, `--description-file` | Read the description from a file, or `-` for stdin |
+| `--icon` | Lucide icon name |
+| `--public` | Let anyone with the link view the board |
+| `--private` | Only workspace members can view the board |
+
+### `jac-chart project archive`
+
+```bash
+jac-chart project archive [<project>]
+```
+
+Hides a project from the project list without deleting it.
+
+### `jac-chart project unarchive`
+
+```bash
+jac-chart project unarchive [<project>]
+```
+
+Brings an archived project back to the project list.
+
+### `jac-chart project move`
+
+```bash
+jac-chart project move [<project>] --to <workspace> [--yes]
+```
+
+Moves a project and its tasks to another workspace. `--to` takes a workspace ID or slug.
+
+### `jac-chart project delete`
+
+```bash
+jac-chart project delete [<project>] [--yes]
+```
+
+Permanently deletes a project with all its tasks, comments and columns. In a terminal, you type the project key to confirm.
+
+## Columns
+
+### `jac-chart column list`
+
+```bash
+jac-chart column list [-p <project>]
+```
+
+Lists a project's columns in board order.
+
+### `jac-chart column create`
+
+```bash
+jac-chart column create [<name>] [-p <project>] [--final] [--icon <name>] [--color <hex>]
+```
+
+Adds a column to the end of the board. The slug comes from the name. `--final` marks it as a done column, which stops overdue reminders for its tasks.
+
+### `jac-chart column edit`
+
+```bash
+jac-chart column edit <column> [-p <project>] [flags]
+```
+
+Renames a column or changes its done state, color or icon. `--name` keeps the slug and the tasks. `--final` and `--no-final` mark or unmark it as done. `--color` and `--icon` accept `none` to clear them.
+
+### `jac-chart column move`
+
+```bash
+jac-chart column move <column> [-p <project>] (--before <column> | --after <column>)
+```
+
+Moves a column before or after another one.
+
+### `jac-chart column delete`
+
+```bash
+jac-chart column delete <column> [-p <project>] [--move-tasks-to <column>] [--yes]
+```
+
+Deletes a column. When it holds tasks, `--move-tasks-to` is required and moves them first.
+
+## Custom fields
+
+### `jac-chart field list`
+
+```bash
+jac-chart field list [-p <project>]
+```
+
+Lists the custom fields of a project.
+
+### `jac-chart field create`
+
+```bash
+jac-chart field create [<name>] [-t <type>] [-o <option>...] [-p <project>]
+```
+
+Adds a custom field. `-t`, `--type` is `text`, `number`, `date`, `dropdown` (or `select`), `multiselect` or `boolean`. `-o`, `--option` adds a choice for dropdown and multiselect fields. Repeatable.
+
+```bash
+jac-chart field create Size -t dropdown -o S -o M -o L -p KAN
+```
+
+### `jac-chart field delete`
+
+```bash
+jac-chart field delete [<field>] [-p <project>] [--yes]
+```
+
+Deletes a custom field and its values on every task.
+
+## Workflow rules
+
+Workflow rules move tasks to a column when GitHub, GitLab or Gitea events arrive. The integrations are `github`, `gitlab` and `gitea`. The events are `branch_push`, `pr_opened`, `pr_merged`, `issue_opened`, `issue_closed` and `issue_reopened`.
+
+### `jac-chart workflow list`
+
+```bash
+jac-chart workflow list [-p <project>]
+```
+
+Lists the rules of a project.
+
+### `jac-chart workflow set`
+
+```bash
+jac-chart workflow set [<integration>] [<event>] [<column>] [-p <project>]
+```
+
+Chooses the column tasks move to when an event arrives.
+
+```bash
+jac-chart workflow set github pr_merged done -p KAN
+```
+
+### `jac-chart workflow delete`
+
+```bash
+jac-chart workflow delete [<rule>] [<event>] [-p <project>] [--yes]
+```
+
+Deletes a rule. Pass the integration and the event, an event alone, or a rule ID.
+
+## Workspaces
+
+### `jac-chart workspace list`
+
+Lists the workspaces you belong to.
+
+### `jac-chart workspace use`
+
+```bash
+jac-chart workspace use [<workspace>]
+```
+
+Chooses the default workspace for your commands. Takes a slug, name or ID.
+
+### `jac-chart workspace create`
+
+```bash
+jac-chart workspace create [<name>] [--slug <slug>]
+```
+
+Creates a workspace and makes you its owner. The slug is made from the name unless you pass `--slug`.
+
+### `jac-chart workspace edit`
+
+```bash
+jac-chart workspace edit [<workspace>] [flags]
+```
+
+Changes the current workspace, or the one you name.
+
+| Flag | Description |
+| --- | --- |
+| `--name` | New name |
+| `--slug` | New URL slug, such as `acme-studio` |
+| `-d`, `--description` | New description, or `-` for stdin. Pass `""` to clear it. |
+| `-F`, `--description-file` | Read the description from a file, or `-` for stdin |
+
+### `jac-chart workspace leave`
+
+```bash
+jac-chart workspace leave <workspace> [--yes]
+```
+
+Leaves a workspace you are a member of.
+
+### `jac-chart workspace delete`
+
+```bash
+jac-chart workspace delete <workspace> [--yes]
+```
+
+Permanently deletes a workspace with all its projects and tasks. In a terminal, you type the slug to confirm.
+
+## Members and invitations
+
+Roles are `owner`, `admin`, `member`, `viewer`, or a custom role of the workspace.
+
+### `jac-chart member list`
+
+Lists the members of a workspace with their roles.
+
+### `jac-chart member invite`
+
+```bash
+jac-chart member invite <email...> [-r <role>]
+```
+
+Invites one or more people by email. `-r`, `--role` sets their role.
+
+### `jac-chart member role`
+
+```bash
+jac-chart member role [<member>] [<role>] [--yes]
+```
+
+Changes a member's role. The member is an email address, name or ID. Demoting an owner or admin asks first.
+
+### `jac-chart member remove`
+
+```bash
+jac-chart member remove [<member>] [--yes]
+```
+
+Removes someone from the workspace.
+
+### `jac-chart invitation list`
+
+Lists pending invitations sent from the workspace.
+
+### `jac-chart invitation pending`
+
+Lists invitations for you to join other workspaces.
+
+### `jac-chart invitation accept`
+
+```bash
+jac-chart invitation accept [<id>]
+```
+
+Accepts an invitation and joins the workspace.
+
+### `jac-chart invitation decline`
+
+```bash
+jac-chart invitation decline [<id>]
+```
+
+Declines an invitation.
+
+### `jac-chart invitation cancel`
+
+```bash
+jac-chart invitation cancel [<invitation>] [--yes]
+```
+
+Cancels a pending invitation you sent. Takes the invitation ID or the invited email address.
+
+## Notifications
+
+`jac-chart inbox` is a shorter name for `jac-chart notification`.
+
+### `jac-chart notification list`
+
+```bash
+jac-chart notification list [-u] [-L <n>]
+```
+
+Lists your latest notifications, in the selected workspace if there is one. `-u`, `--unread` shows only unread ones. `-L`, `--limit` defaults to 20. The server keeps the latest 50.
+
+### `jac-chart notification read`
+
+```bash
+jac-chart notification read [<id...>] [--all]
+```
+
+Marks notifications as read. Pass notification IDs or the short IDs from `jac-chart notification list`, or `-a`, `--all` for every notification.
+
+## Search and API
+
+### `jac-chart search`
+
+```bash
+jac-chart search <query...> [-t <type>] [-L <n>] [-p <project>]
+```
+
+Searches tasks, projects and comments. The query can be words or a ticket ID such as `KAN-12`. `-t`, `--type` is `all`, `tasks`, `projects`, `workspaces`, `comments` or `activities`. `-L`, `--limit` is 1 to 50, default 20. `-p` searches one project.
+
+### `jac-chart api`
+
+```bash
+jac-chart api <method> <path> [-f key=value...] [--input <file>] [--query key=value...]
+```
+
+Sends an authenticated request to the Jac-Chart API and prints the response. The method is `GET`, `POST`, `PUT`, `PATCH` or `DELETE`. The path is under `/api`, and the `/api` prefix is optional.
+
+| Flag | Description |
+| --- | --- |
+| `-f`, `--field` | Add `key=value` to the JSON body. Values that parse as JSON keep their type, and `a.b=1` nests. Repeatable. |
+| `--input` | Read the JSON body from a file, or `-` for stdin |
+| `--query` | Add a `key=value` query parameter. Repeatable. |
+
+`GET` requests cannot have a body. See [Scripts and agents](/cli/scripting#call-the-api-directly) for examples.

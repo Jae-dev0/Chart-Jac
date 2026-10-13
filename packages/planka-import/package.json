@@ -1,0 +1,58 @@
+{
+	"name": "@jac-chart/planka-import",
+	"version": "0.2.0",
+	"description": "Migrate PLANKA boards into Jac-Chart: projects, lists, cards, labels, assignees, checklists and comments, over the public APIs of both",
+	"license": "MIT",
+	"author": "Jac-Chart (https://jac-chart.app)",
+	"homepage": "https://jac-chart.app/docs/core/migrations/from-planka",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Jae-dev0/Jac-Chart/",
+		"directory": "packages/planka-import"
+	},
+	"type": "module",
+	"bin": {
+		"jac-chart-planka-import": "dist/index.js"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"keywords": [
+		"cli",
+		"import",
+		"kanban",
+		"jac-chart",
+		"migration",
+		"planka",
+		"project-management"
+	],
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"build": "vp run compile",
+		"prepublishOnly": "pnpm run build",
+		"lint": "vp check .",
+		"start": "node dist/index.js",
+		"test": "vp run test:run",
+		"test:watch": "vp test --config vitest.config.ts",
+		"typecheck": "vp run check:types"
+	},
+	"dependencies": {
+		"prompts": "^2.4.2"
+	},
+	"devDependencies": {
+		"@jac-chart/importers": "workspace:*",
+		"@jac-chart/typescript-config": "workspace:*",
+		"@types/node": "^26.6.2",
+		"@types/prompts": "^2.4.9",
+		"tsx": "^4.23.15",
+		"typescript": "^7.0.2",
+		"vite-plus": "catalog:"
+	}
+}

@@ -1,0 +1,40 @@
+# Jac-Chart Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "jac-chart.fullname" . }}-jac-chart
+  labels:
+    {{- include "jac-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: jac-chart
+spec:
+  type: {{ .Values.jac-chart.service.type }}
+  ports:
+    - port: {{ .Values.jac-chart.service.port }}
+      targetPort: jac-chart
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "jac-chart.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: jac-chart
+
+{{- if .Values.postgresql.enabled }}
+---
+# PostgreSQL Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "jac-chart.fullname" . }}-postgresql
+  labels:
+    {{- include "jac-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/component: postgresql
+spec:
+  type: {{ .Values.postgresql.service.type }}
+  ports:
+    - port: {{ .Values.postgresql.service.port }}
+      targetPort: postgresql
+      protocol: TCP
+      name: postgresql
+  selector:
+    {{- include "jac-chart.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: postgresql
+{{- end }}

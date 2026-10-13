@@ -1,0 +1,58 @@
+{
+	"name": "@jac-chart/cli",
+	"version": "0.1.1",
+	"description": "Official command-line client for Jac-Chart, the open source project manager: sign in, list and update tasks, and script your boards from the terminal",
+	"license": "MIT",
+	"author": "Jac-Chart (https://jac-chart.app)",
+	"homepage": "https://jac-chart.app/docs/cli",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Jae-dev0/Jac-Chart/",
+		"directory": "packages/cli"
+	},
+	"type": "module",
+	"bin": {
+		"jac-chart": "dist/jac-chart.mjs"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"keywords": [
+		"cli",
+		"kanban",
+		"jac-chart",
+		"project-management",
+		"tasks",
+		"terminal"
+	],
+	"scripts": {
+		"build": "vp run compile",
+		"prepublishOnly": "pnpm run build",
+		"dev": "tsx src/bin.ts",
+		"lint": "vp check .",
+		"test": "vp run test:run",
+		"test:watch": "vp test --config vitest.config.ts",
+		"typecheck": "vp run check:types"
+	},
+	"devDependencies": {
+		"@effect/platform-node": "4.0.2",
+		"@gabrielbryk/jq-ts": "1.7.0",
+		"@jac-chart/mcp": "workspace:*",
+		"@jac-chart/typescript-config": "workspace:*",
+		"@types/node": "^26.6.2",
+		"effect": "4.0.2",
+		"jpeg-js": "0.4.4",
+		"pngjs": "7.0.0",
+		"tsx": "^4.23.15",
+		"typescript": "^7.0.2",
+		"vite-plus": "catalog:"
+	}
+}

@@ -1,0 +1,127 @@
+{{- $corsOrigins := .Values.jac-chart.env.corsOrigins -}}
+{{- $corsOriginsValue := "" -}}
+{{- if kindIs "slice" $corsOrigins -}}
+  {{- $corsOriginsValue = join "," $corsOrigins -}}
+{{- else if $corsOrigins -}}
+  {{- $corsOriginsValue = $corsOrigins -}}
+{{- else if .Values.jac-chart.env.clientUrl -}}
+  {{- $corsOriginsValue = .Values.jac-chart.env.clientUrl | trim | trimSuffix "/" -}}
+{{- end }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "jac-chart.fullname" . }}
+  labels:
+    {{- include "jac-chart.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "jac-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "jac-chart.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: jac-chart
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "jac-chart.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      enableServiceLinks: {{ default false .Values.enableServiceLinks }}
+      containers:
+        - name: jac-chart
+          securityContext:
+            {{- toYaml .Values.jac-chart.securityContext | nindent 12 }}
+          image: "{{ .Values.jac-chart.image.repository }}:{{ .Values.jac-chart.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.jac-chart.image.pullPolicy }}
+          ports:
+            - name: jac-chart
+              containerPort: {{ .Values.jac-chart.service.targetPort }}
+              protocol: TCP
+          env:
+            - name: JAC_CHART_CLIENT_URL
+              value: {{ .Values.jac-chart.env.clientUrl | trim | trimSuffix "/" | quote }}
+            - name: CORS_ORIGINS
+              value: {{ $corsOriginsValue | quote }}
+            - name: AUTH_SECRET
+              {{- if .Values.jac-chart.env.existingSecret.enabled }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.jac-chart.env.existingSecret.name }}
+                  key: {{ .Values.jac-chart.env.existingSecret.key }}
+              {{- else }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "jac-chart.fullname" . }}-auth
+                  key: auth-secret
+              {{- end }}
+            {{- if and (not .Values.jac-chart.env.database.external.enabled) .Values.postgresql.auth.existingSecret }}
+            - name: JAC_CHART_POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresql.auth.existingSecret }}
+                  key: {{ .Values.postgresql.auth.secretKeys.userPasswordKey }}
+            {{- end }}
+            - name: DATABASE_URL
+              {{- if .Values.jac-chart.env.database.external.enabled }}
+              {{- if .Values.jac-chart.env.database.external.existingSecret.enabled }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.jac-chart.env.database.external.existingSecret.name }}
+                  key: {{ .Values.jac-chart.env.database.external.existingSecret.passwordKey }}
+              {{- else }}
+              value: "postgresql://{{ include "jac-chart.urlencodeUserinfo" .Values.jac-chart.env.database.external.username }}:{{ include "jac-chart.urlencodeUserinfo" .Values.jac-chart.env.database.external.password }}@{{ .Values.jac-chart.env.database.external.host }}:{{ .Values.jac-chart.env.database.external.port }}/{{ .Values.jac-chart.env.database.external.database }}"
+              {{- end }}
+              {{- else }}
+              {{- if .Values.postgresql.auth.existingSecret }}
+              value: "postgresql://{{ include "jac-chart.urlencodeUserinfo" .Values.postgresql.auth.username }}:$(JAC_CHART_POSTGRES_PASSWORD)@{{ include "jac-chart.fullname" . }}-postgresql:{{ .Values.postgresql.service.port }}/{{ .Values.postgresql.auth.database }}"
+              {{- else }}
+              value: "postgresql://{{ include "jac-chart.urlencodeUserinfo" .Values.postgresql.auth.username }}:{{ include "jac-chart.urlencodeUserinfo" .Values.postgresql.auth.password }}@{{ include "jac-chart.fullname" . }}-postgresql:{{ .Values.postgresql.service.port }}/{{ .Values.postgresql.auth.database }}"
+              {{- end }}
+              {{- end }}
+            - name: DISABLE_REGISTRATION
+              value: {{ .Values.jac-chart.env.disableRegistration | quote }}
+            - name: DISABLE_PASSWORD_REGISTRATION
+              value: {{ .Values.jac-chart.env.disablePasswordRegistration | quote }}
+            - name: DISABLE_EMAIL_OTP_SIGN_IN
+              value: {{ .Values.jac-chart.env.disableEmailOtpSignIn | quote }}
+            {{- with .Values.jac-chart.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- with .Values.jac-chart.extraEnvFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          livenessProbe:
+            {{- toYaml .Values.jac-chart.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.jac-chart.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.jac-chart.resources | nindent 12 }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

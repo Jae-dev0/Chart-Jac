@@ -1,0 +1,70 @@
+---
+title: Jac-Chart CLI
+sidebarTitle: Overview
+description: Manage tasks and projects from your terminal with the official Jac-Chart command-line client.
+---
+
+The official Jac-Chart CLI is a single `jac-chart` binary for macOS, Linux and Windows. It works with Jac-Chart Cloud and self-hosted instances, shows styled output in a terminal, and prints plain JSON for scripts and agents.
+
+## Quick start
+
+```bash
+curl -fsSL https://jac-chart.app/cli/install.sh | sh
+jac-chart login
+jac-chart
+```
+
+On Windows, install it in PowerShell with `irm https://jac-chart.app/cli/install.ps1 | iex`. Homebrew (`brew install Jae-dev0/tap/jac-chart`) and npm (`npm install -g @jac-chart/cli`, Node.js 20 or newer) work too. [Install](/cli/install) covers versions, mirrors and supported systems, and [Sign in](/cli/sign-in) covers self-hosted servers and API keys.
+
+## Everyday commands
+
+```bash
+jac-chart workspace list
+jac-chart workspace use            # pick the default workspace
+jac-chart project list
+jac-chart task list -p KAN         # tasks grouped by column
+jac-chart task list -p KAN --mine --open
+jac-chart task mine                # your open tasks, soonest due first
+jac-chart task view KAN-12
+jac-chart task create "Fix login redirect" -p KAN --priority high --due tomorrow
+jac-chart task status KAN-12 done
+jac-chart task assign KAN-12 me
+jac-chart comment add KAN-12 "Shipped in v2.35"
+jac-chart time start KAN-12
+jac-chart time stop
+jac-chart task open KAN-12
+jac-chart search "login redirect"
+```
+
+Tasks are addressed by their ticket ID, such as `KAN-12`, or by their ID. If a ticket ID exists in more than one of your workspaces, pass `-w` to choose one.
+
+When a workspace, project or column is missing and you are in a terminal, the CLI shows a searchable picker. In scripts it stops with an error that names the flag to pass.
+
+Every command has `--help`, and the [command reference](/cli/reference) lists every argument and flag. Print a shell completion script with `jac-chart --completions zsh` (or `bash`, `fish`, `sh`).
+
+## Update
+
+Run the install command again. It replaces `jac-chart` with the latest release and keeps your logins and settings. See [Install](/cli/install#update) for pinned versions and mirrors.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Install" icon="download" href="/cli/install">
+    Pin a version, use a mirror, update and uninstall.
+  </Card>
+  <Card title="Sign in" icon="key-round" href="/cli/sign-in">
+    Self-hosted servers, API keys for CI, and several logins.
+  </Card>
+  <Card title="Configuration" icon="settings" href="/cli/configuration">
+    Environment variables, repository defaults and inline images.
+  </Card>
+  <Card title="Scripts and agents" icon="braces" href="/cli/scripting">
+    JSON output, jq filters, raw API calls and the agent skill.
+  </Card>
+  <Card title="Command reference" icon="book-open" href="/cli/reference">
+    Every command with its arguments and flags.
+  </Card>
+  <Card title="MCP server" icon="bot" href="/core/integrations/mcp">
+    Connect AI assistants such as Claude and Cursor without a shell.
+  </Card>
+</CardGroup>

@@ -1,0 +1,60 @@
+# Jac-Chart on Coolify
+#
+# Deploy this stack from a Git source with Coolify's "Docker Compose" build pack:
+#   Public Repository -> https://github.com/Jae-dev0/Jac-Chart
+#   Build Pack: Docker Compose | Base Directory: / | Compose Location: compose.coolify.yml
+#
+# Assign a domain to the "jac-chart" service using its container port, e.g. https://jac-chart.example.com:5173
+# (visitors use the normal HTTPS URL; the port only tells Coolify where to route traffic).
+#
+# The only required environment variable is JAC_CHART_CLIENT_URL (your public URL, without :5173).
+# AUTH_SECRET and the PostgreSQL password are auto-generated via Coolify magic variables.
+# Do NOT set JAC_CHART_API_URL — the entrypoint derives it from JAC_CHART_CLIENT_URL (public URL + /api).
+# The Jac-Chart image tracks the latest release by default. Set JAC_CHART_IMAGE_TAG to a
+# release tag to hold a deployment on a known version.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_DB=jac-chart
+      - POSTGRES_USER=jac-chart
+      - POSTGRES_PASSWORD=${SERVICE_PASSWORD_POSTGRES:?}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jac-chart -d jac-chart"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  jac-chart:
+    # Tracks the latest release. The API runs database migrations on startup, so
+    # set JAC_CHART_IMAGE_TAG to a release tag if a redeploy should stay on a known
+    # version rather than pick up whatever is newest.
+    image: ghcr.io/jae-dev0/jac-chart:${JAC_CHART_IMAGE_TAG:-latest}
+    environment:
+      - JAC_CHART_CLIENT_URL=${JAC_CHART_CLIENT_URL:?}
+      - AUTH_SECRET=${SERVICE_HEX_64_JAC_CHART:?}
+      # The image derives DATABASE_URL from these POSTGRES_* variables at startup.
+      # POSTGRES_PASSWORD is the same generated value shared with the postgres service.
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=jac-chart
+      - POSTGRES_USER=jac-chart
+      - POSTGRES_PASSWORD=${SERVICE_PASSWORD_POSTGRES}
+      # Optional: SMTP_*, SSO providers, GitHub integration, Sentry, Redis...
+      # add them here or in the Coolify UI for the jac-chart service.
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-Y", "off", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:5173/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+
+volumes:
+  postgres_data:

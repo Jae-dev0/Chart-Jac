@@ -1,0 +1,48 @@
+---
+title: Sign in
+description: Connect the CLI to Jac-Chart Cloud or a self-hosted instance, use API keys in CI, and keep several logins.
+---
+
+```bash
+jac-chart login
+```
+
+The CLI shows a one-time code, copies it to your clipboard, and opens the approval page of your Jac-Chart web app. Approve the request there and the CLI saves the login. After signing in you can choose a default workspace. Pass `--no-browser` to print the link instead of opening a browser.
+
+For a self-hosted instance, pass its address once. Later commands reuse it:
+
+```bash
+jac-chart login --api-url https://jac-chart.example.com
+```
+
+`jac-chart login` uses [device authorization](/api-reference/authentication) with the `jac-chart-cli` client ID, which self-hosted Jac-Chart allows by default. If you set `DEVICE_AUTH_CLIENT_IDS`, keep `jac-chart-cli` in the list.
+
+Check or end the session with:
+
+```bash
+jac-chart whoami
+jac-chart logout
+```
+
+## API keys for CI and scripts
+
+Create a key in **Settings → Account → API Keys** and set it in the environment:
+
+```bash
+export JAC_CHART_API_KEY=your-key
+jac-chart task list -w your-workspace-id -p KAN
+```
+
+The CLI picks credentials in this order: `--token`, then `JAC_CHART_API_KEY`, then the stored login. A stored login is only ever sent to the server it was created for. A few account-level actions need a signed-in session, and the CLI tells you when an API key cannot be used.
+
+## Profiles
+
+Each login is stored as a profile. The first one is called `default`. To keep a second server or account, sign in with another profile name:
+
+```bash
+jac-chart login --profile work --api-url https://jac-chart.example.com
+jac-chart profile list
+jac-chart profile use default
+```
+
+`jac-chart login` and `jac-chart profile use` make that profile the active one. To use a profile for a single command, pass `--profile work` or set `JAC_CHART_PROFILE=work`. `jac-chart profile rename` and `jac-chart profile remove` manage the rest.

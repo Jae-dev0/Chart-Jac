@@ -1,0 +1,34 @@
+name: jac-chart-browserstack-e2e
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: jac-chart_e2e
+      POSTGRES_USER: jac-chart_e2e
+      POSTGRES_PASSWORD: jac-chart_e2e
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jac-chart_e2e -d jac-chart_e2e"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+  jac-chart:
+    image: jac-chart-browserstack:test
+    build:
+      context: ../..
+      dockerfile: Dockerfile.jac-chart
+    ports:
+      - "127.0.0.1:18173:5173"
+    environment:
+      DATABASE_URL: postgresql://jac-chart_e2e:jac-chart_e2e@postgres:5432/jac-chart_e2e
+      AUTH_SECRET: browser-tests-only-not-a-production-secret
+      JAC_CHART_CLIENT_URL: http://${JAC_CHART_E2E_HOST:-localhost}:18173
+      DISABLE_WORKSPACE_CREATION: "false"
+      DISABLE_REGISTRATION: "false"
+      DISABLE_GUEST_ACCESS: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy

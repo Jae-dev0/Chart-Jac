@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature request
+    url: https://feedback.jac-chart.app
+    about: Suggest improvements, vote on feature requests, and follow their progress
+  - name: Jac-Chart Documentation
+    url: https://jac-chart.app/docs/core
+    about: Check our documentation for answers to common questions
+  - name: Jac-Chart Discord Community
+    url: https://discord.gg/rU4tSyhXXU
+    about: Join our Discord server to chat with the community and get help
+  - name: GitHub Discussions
+    url: https://github.com/orgs/usejac-chart/discussions
+    about: For general questions and discussions about Jac-Chart
+  - name: Support Jac-Chart
+    url: https://github.com/sponsors/Jac-Chart
+    about: Help keep Jac-Chart maintained and evolving
